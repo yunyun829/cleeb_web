@@ -1,0 +1,27 @@
+{% extends 'cleebweb_app/base.html' %}
+{% load django_bootstrap5 %}
+
+{% block titel %}追加{% endblock titel %}
+
+{% block content %}
+    <h4 class="mt-4 mb-5 border-bottom"> 追加</h4>
+    <div>
+    <h6>TIPS</h6>
+    仮バージョンのため少し入力にコツがいるので注意<br>
+    ＊日付（Date）は「2022-mm-dd/22:00:00」のスタイルで入力<br>
+    ＊全てのフォームが必須のため欠席（Absence）と備考（detail）は特に無ければ「-」（半角ハイフン）を入力<br>
+    全部記入したらENTERをタップ<br>
+    </div>
+    <form action="{% url 'add' %}" method="POST">
+        {% csrf_token %}
+        {%bootstrap_form form layout='horizontal'%}
+        <div >
+        <div class="form-group row">
+            <div class="offset-md-3 col-md-9">
+                <button type="submit" class="btn btn-primary">ENTER</button>
+            </div>
+        </div>
+    </form>
+    <a href="{% url 'list'%}" class="btn btn-secondary btn-sm">←</a>
+
+{% endblock content %}

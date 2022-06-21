@@ -1,0 +1,30 @@
+{% extends "cleebweb_app/base.html" %}
+
+
+{% block title %}レギオンマッチ　ログ{% endblock title %}
+
+{% block content %}
+<h4 class="mt-4 border-bottom">レギオンマッチ ログ</h4>
+<div align=right><a href="{% url 'add' %}" class="btn btn-outline-secondary">+</a></div>
+<table class="table table-striped table-borderd">
+    <thead>
+        <tr>
+            <th scope="col">日付</th>
+            <th scope="col">レギオン名</th>
+            <th scope="col">勝敗</th>
+            <th scope="col">前衛</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for log in list %}
+        <tr>
+            <td>{{ log.date|date:'Y/m/d' }}</td>
+            <td>{{ log.legion_name}}</td>
+            <td>{% if log.win_lose%}WIN{% else %}LOSE{% endif %}</td>
+            <td>{% if log.front_type%}通常{% else %}特殊{% endif %}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock content %}
